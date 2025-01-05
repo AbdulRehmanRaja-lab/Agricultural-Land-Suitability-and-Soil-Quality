@@ -1,0 +1,34 @@
+-- Which soil type is most suitable for each crop across different regions?
+
+SELECT Crop_Suitability, Soil_Type, COUNT(*) AS Region_Count
+FROM dataset
+GROUP BY Crop_Suitability, Soil_Type
+ORDER BY Region_Count DESC;
+
+-- What is the average rainfall and temperature for each division during different seasons
+
+SELECT Location, Season, AVG(Average_Rainfall(mm)) AS Avg_Rainfall, AVG(Temperature(°C)) AS Avg_Temperature
+FROM dataset
+GROUP BY Location, Season;
+
+-- Which regions have the highest and lowest fertility index?
+
+SELECT Location, Fertility_Index
+FROM dataset
+ORDER BY Fertility_Index DESC
+LIMIT 5;
+
+-- What is the distribution of land use types across different divisions?
+
+SELECT Location, Land_Use_Type, COUNT(*) AS Count
+FROM dataset
+GROUP BY Location, Land_Use_Type;
+
+-- Which regions require the most attention based on remarks?
+
+SELECT Location, COUNT(*) AS Attention_Count
+FROM dataset
+WHERE Remarks LIKE '%Requires attention%'
+GROUP BY Location
+ORDER BY Attention_Count DESC;
+
